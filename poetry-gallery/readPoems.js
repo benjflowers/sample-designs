@@ -1,21 +1,18 @@
 const fs = require('file-system');
 
-const data = fs.readdir('./copy', (err, files) => {
-  return files.length
-})
+const getFiles = (url) => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(url, (err, files) => {
+      if(err){
+        reject(err);
+      } else {
+        resolve(files);
+      }
+    })
+  })
+}
 
-console.log(data);
-// fs.readdir('./copy', (err, files) => {
-//   console.log(files.length);
-// })
-
-
-// fs.readFile(filePath, function read(err, data){
-//   if(err){
-//     throw err;
-//   }
-//   result = data;
-// })
+getFiles('./copy').then((files) => {console.log(files)});
 
 // let message = {
 //   message1: 'hello',
