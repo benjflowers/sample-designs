@@ -1,4 +1,5 @@
 const express = require('express');
+const readPoems = require('./readPoems');
 
 const app = express();
 app.use(express.static('public'));
@@ -12,15 +13,9 @@ const server = app.listen(5000, () => {
 
 app.get('/copy', (req, res) => {
   res.json({
-    status: "success"
+    status: "success",
+    // message: readPoems.message.message2,
   });
 })
 
-// fs.readFile('./copy/small-songs-made-of-cloth.txt', function read(err, data){
-//   if(err){
-//     throw err;
-//   }
-//   content = data;
 
-//   console.log(content);
-// })
