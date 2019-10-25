@@ -1,3 +1,19 @@
+body {
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.wrapper {
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  border: solid red 2px;
+  overflow-y: scroll;
+}
+
 h1 {
   color: red;
 }
@@ -12,7 +28,5 @@ h1 {
 
 .poem-card {
   background-color: rgb(99, 20, 99, .2);
-  padding: 20px;
-  margin-left: 10px;
   margin-bottom: 20px;
 }

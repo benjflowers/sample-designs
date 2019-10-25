@@ -1,3 +1,6 @@
+let mainDiv = document.body.querySelector('.main')
+mainDiv.style.height = window.innerHeight - 100;
+
 const options = {
   method: 'GET',
   headers: {
@@ -37,7 +40,7 @@ const setPoems = async (url) => {
     poemCard.appendChild(titleNode);
     poemCard.appendChild(contentNode);
 
-    document.body.appendChild(poemCard);
+    document.body.querySelector('.main').appendChild(poemCard);
   }
 }
 
