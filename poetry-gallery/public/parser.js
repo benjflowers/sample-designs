@@ -17,20 +17,34 @@ const setPoems = async (url) => {
   let keys = Object.keys(collection.poems);
 
   for(let i = 0; i < keys.length; i++){
-    let title = keys[i];
-    let content = collection.poems[keys[i]];
+    let poemTitle = formatTitle(keys[i]);
+    let poemContent = collection.poems[keys[i]];
+    let poemCard = document.createElement('div');
+
+    poemCard.classList.add('poem-card');
+    poemCard.id = `poem${i}`;
 
     let titleNode = document.createElement('h1');
     titleNode.classList.add('poem-title');
-    titleNode.innerText = title;
+    titleNode.id = `poemTitle${i}`;
+    titleNode.innerText = poemTitle;
 
     let contentNode = document.createElement('p');
     contentNode.classList.add('poem-content');
-    contentNode.innerText = content;
+    contentNode.id = `poem${i}`;
+    contentNode.innerText = poemContent;
 
-    document.body.appendChild(titleNode);
-    document.body.appendChild(contentNode);
+    poemCard.appendChild(titleNode);
+    poemCard.appendChild(contentNode);
+
+    document.body.appendChild(poemCard);
   }
 }
 
-setPoems('/copy');
+const formatTitle = (string) => {
+  return string.split('.')[0]
+               .replace(/-/g, ' ')
+               .toUpperCase()
+}
+
+setPoems('./copy');

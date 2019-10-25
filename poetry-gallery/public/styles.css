@@ -3,9 +3,16 @@ h1 {
 }
 
 .poem-title {
-  color: rgb(99, 168, 99);
+  color: rgb(228, 187, 55);
 }
 
 .poem-content {
   color: rgb(99, 100, 99)
+}
+
+.poem-card {
+  background-color: rgb(99, 20, 99, .2);
+  padding: 20px;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
