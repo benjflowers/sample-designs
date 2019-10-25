@@ -14,7 +14,7 @@ const server = app.listen(5000, () => {
 app.get('/copy', (req, res) => {
   res.json({
     status: "success",
-    // message: readPoems.message.message2,
+    poems: readPoems.createCollection,
   });
 })
 

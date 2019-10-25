@@ -1,5 +1,6 @@
 const fs = require('file-system');
-const copyDirectory = './copy'
+const copyDirectory = './copy';
+const collection = {};
 // returns list of files found at directory
 const getFiles = (url) => {
   return new Promise((resolve, reject) => {
@@ -13,13 +14,25 @@ const getFiles = (url) => {
   })
 }
 
+const readFiles = (files) => {
+  for(let i = 0; i < files.length; i++){
+    fs.readFile(copyDirectory + '/' + files[i], 'utf8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        setData(files[i],data);
+      }
+    });
+  }
+}
 
-getFiles(copyDirectory).then((files) => {
-  fs.readFile(copyDirectory + '/' + files[1], 'utf8', (err, data) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(data);
-    }
-  });
-});
+const setData = (title, data) => {
+  collection[title] = data;
+}
+
+const createCollection = (directory) => {
+  getFiles(directory).then( (files) => readFiles(files));
+  return collection;
+}
+
+module.exports.createCollection = createCollection(copyDirectory);
