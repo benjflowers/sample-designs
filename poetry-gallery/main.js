@@ -13,7 +13,6 @@ const server = app.listen(5000, () => {
 
 app.get('/copy', (req, res) => {
   res.json({
-    status: "success",
     poems: readPoems.createCollection,
   });
 })
