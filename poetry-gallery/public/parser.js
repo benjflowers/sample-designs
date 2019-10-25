@@ -21,8 +21,7 @@ const setPoems = async (url) => {
 
   for(let i = 0; i < keys.length; i++){
     let poemTitle = formatTitle(keys[i]);
-    let poemContent = collection.poems[keys[i]];
-    let titlesDiv = document.body.querySelector('.titles');
+    let titlesDiv = selectElement('.titles');
 
     let titleNode = document.createElement('h1');
     titleNode.classList.add('poem-title');
@@ -32,7 +31,7 @@ const setPoems = async (url) => {
     titlesDiv.appendChild(titleNode);
 
     titleNode.addEventListener('click', (e) => {
-      let contentDiv = document.body.querySelector('.content');
+      let contentDiv = selectElement('.content');
 
       if(contentDiv.querySelector('*')){
         contentDiv.removeChild(contentDiv.querySelector('*'));
@@ -42,7 +41,7 @@ const setPoems = async (url) => {
       contentNode.classList.add('poem-content');
       contentNode.id = `poem${e.target.id}`;
       contentNode.innerText = collection.poems[keys[e.target.id]];
-      document.body.querySelector('.content').appendChild(contentNode);
+      selectElement('.content').appendChild(contentNode);
     });
   }
 }
@@ -51,6 +50,10 @@ const formatTitle = (string) => {
   return string.split('.')[0]
                .replace(/_/g, ' ')
                .toUpperCase()
+}
+
+const selectElement = (elementClass) => {
+  return document.body.querySelector(elementClass);
 }
 
 setPoems('./copy');
