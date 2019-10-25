@@ -23,27 +23,38 @@ const setPoems = async (url) => {
     let poemTitle = formatTitle(keys[i]);
     let titlesDiv = selectElement('.titles');
 
-    let titleNode = document.createElement('h1');
-    titleNode.classList.add('poem-title');
-    titleNode.id = `${i}`;
-    titleNode.innerText = poemTitle;
-    titleNode.style.textAlign = 'center';
-    titlesDiv.appendChild(titleNode);
+    let h1node = createElement('h1',
+                               i,
+                               'poem-title',
+                               poemTitle);
 
-    titleNode.addEventListener('click', (e) => {
+    h1node.style.textAlign = 'center';
+    titlesDiv.appendChild(h1node);
+
+    h1node.addEventListener('click', (e) => {
       let contentDiv = selectElement('.content');
 
       if(contentDiv.querySelector('*')){
         contentDiv.removeChild(contentDiv.querySelector('*'));
       }
 
-      let contentNode = document.createElement('p');
-      contentNode.classList.add('poem-content');
-      contentNode.id = `poem${e.target.id}`;
-      contentNode.innerText = collection.poems[keys[e.target.id]];
-      selectElement('.content').appendChild(contentNode);
+      let pNode = createElement('p',
+                                `poem${e.target.id}`,
+                                'poem-content',
+                                collection.poems[keys[e.target.id]]);
+
+      selectElement('.content').appendChild(pNode);
     });
   }
+}
+
+const createElement = (type, id, className, innerText) => {
+  let node = document.createElement(type);
+  node.classList.add(className)
+  node.id = id
+  node.innerText = innerText;
+
+  return node;
 }
 
 const formatTitle = (string) => {
