@@ -27,7 +27,7 @@ const readFiles = (files) => {
 }
 
 const setData = (title, data) => {
-  collection[title] = data;
+  collection[title.split('.')[0]] = data;
 }
 
 const createCollection = (directory) => {

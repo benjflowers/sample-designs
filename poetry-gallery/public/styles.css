@@ -26,12 +26,16 @@ body {
   align-items: center;
 }
 
+.content {
+  grid-column: content;
+  padding-left: 30px;
+}
+
 .poem-title {
   grid-column: titles;
   color: rgb(228, 187, 55);
 }
 
 .poem-content {
-  grid-column: content;
   color: rgb(99, 100, 99)
 }

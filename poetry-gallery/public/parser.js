@@ -26,21 +26,30 @@ const setPoems = async (url) => {
 
     let titleNode = document.createElement('h1');
     titleNode.classList.add('poem-title');
-    titleNode.id = `poemTitle${i}`;
+    titleNode.id = `${i}`;
     titleNode.innerText = poemTitle;
     titleNode.style.textAlign = 'center';
     titlesDiv.appendChild(titleNode);
 
-    let contentNode = document.createElement('p');
-    contentNode.classList.add('poem-content');
-    contentNode.id = `poem${i}`;
-    contentNode.innerText = poemContent;
+    titleNode.addEventListener('click', (e) => {
+      let contentDiv = document.body.querySelector('.content');
+
+      if(contentDiv.querySelector('*')){
+        contentDiv.removeChild(contentDiv.querySelector('*'));
+      }
+
+      let contentNode = document.createElement('p');
+      contentNode.classList.add('poem-content');
+      contentNode.id = `poem${e.target.id}`;
+      contentNode.innerText = collection.poems[keys[e.target.id]];
+      document.body.querySelector('.content').appendChild(contentNode);
+    });
   }
 }
 
 const formatTitle = (string) => {
   return string.split('.')[0]
-               .replace(/-/g, ' ')
+               .replace(/_/g, ' ')
                .toUpperCase()
 }
 
