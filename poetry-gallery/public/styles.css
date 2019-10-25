@@ -5,28 +5,33 @@ body {
 }
 
 .wrapper {
+  display: grid;
+  grid-template-columns: [left-gutter] 1fr [main] 12fr [right-gutter] 1fr;
+  grid-column-gap: 2rem;
   justify-content: center;
   align-items: center;
 }
 
 .main {
+  display: grid;
+  grid-template-columns: [titles] 1fr [content] 4fr;
+  grid-column: main;
   border: solid red 2px;
   overflow-y: scroll;
 }
 
-h1 {
-  color: red;
+.titles {
+  grid-column: titles;
+  justify-content: center;
+  align-items: center;
 }
 
 .poem-title {
+  grid-column: titles;
   color: rgb(228, 187, 55);
 }
 
 .poem-content {
+  grid-column: content;
   color: rgb(99, 100, 99)
-}
-
-.poem-card {
-  background-color: rgb(99, 20, 99, .2);
-  margin-bottom: 20px;
 }
