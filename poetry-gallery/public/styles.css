@@ -14,7 +14,7 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: [titles] 1fr [content] 4fr;
+  grid-template-columns: [titles] 1fr [content] 2fr;
   grid-column: main;
   border: solid red 2px;
   overflow-y: scroll;
@@ -33,9 +33,16 @@ body {
 
 .poem-title {
   grid-column: titles;
-  color: rgb(228, 187, 55);
+  color: rgb(98, 93, 78);
+  font-size: 20pt;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+  line-height: 85px;
 }
 
 .poem-content {
-  color: rgb(99, 100, 99)
+  color: rgb(147, 45, 21);
+  text-align: left;
+  line-height: 20pt;
 }

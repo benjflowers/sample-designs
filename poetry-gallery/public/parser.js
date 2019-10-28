@@ -28,7 +28,6 @@ const setPoems = async (url) => {
                                'poem-title',
                                poemTitle);
 
-    h1node.style.textAlign = 'center';
     titlesDiv.appendChild(h1node);
 
     h1node.addEventListener('click', (e) => {
