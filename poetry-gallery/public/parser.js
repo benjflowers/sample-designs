@@ -18,6 +18,7 @@ const getPoems = async url => {
 const setPoems = async url => {
   let collection = await getPoems(url);
   let keys = Object.keys(collection.poems);
+  addFade(selectElement(".content"));
 
   for (let i = 0; i < keys.length; i++) {
     let poemTitle = formatTitle(keys[i]);
@@ -31,8 +32,9 @@ const setPoems = async url => {
 
     setDivSpacing(h1Div, keys.length);
 
-    h1node.addEventListener("click", e => {
+    h1node.addEventListener("mouseover", e => {
       let contentDiv = selectElement(".content");
+      contentDiv.classList.remove('fade');
 
       if (contentDiv.querySelector("*")) {
         contentDiv.removeChild(contentDiv.querySelector("*"));
@@ -45,10 +47,34 @@ const setPoems = async url => {
         collection.poems[keys[e.target.id.split("-")[1]]]
       );
 
-      selectElement(".content").appendChild(pNode);
+      contentDiv.appendChild(pNode);
+      contentDiv.style.marginTop = (mainDiv.clientHeight - pNode.clientHeight) / 2;
+
+      // selectElement(".content").classList.add('fade');
     });
+
+    h1node.addEventListener("mouseout", e => {
+      let contentDiv = selectElement(".content");
+      addFade(contentDiv);
+    })
   }
 };
+
+const addFade = (div) => {
+  div.classList.add('fade');
+}
+
+const checkFade = (div) => {
+  let fade = false;
+
+  for(let i = 0; i < div.classList.length; i++){
+    if(div.classList[i] == 'fade'){
+      fade = true;
+    }
+  }
+
+  return fade;
+}
 
 const setDivSpacing = (div, n) => {
   let totalDivs = n;

@@ -16,7 +16,7 @@ body {
   display: grid;
   grid-template-columns: [titles] 1fr [content] 2fr;
   grid-column: main;
-  border: solid red 2px;
+  border: solid rgb(147, 45, 21) 2px;
   overflow-y: scroll;
 }
 
@@ -24,14 +24,24 @@ body {
   grid-column: titles;
   justify-content: center;
   align-items: center;
+  margin-left: 30px;
 }
 
 .content {
   grid-column: content;
-  padding-left: 30px;
+  padding-left: 60px;
+  opacity: 1;
+  transition: 0.3s opacity;
+}
+
+.content.fade {
+  opacity: 0;
+  transition: 0.3s opacity;
 }
 
 .poem-title {
+  transition-duration: 300ms;
+
   grid-column: titles;
   color: rgb(98, 93, 78);
   font-size: 20pt;
@@ -41,8 +51,14 @@ body {
   line-height: 30px;
 }
 
+.poem-title:hover{
+  color: rgba(44, 42, 35, 0.26);
+  cursor: pointer;
+  font-size: 20.5pt;
+}
+
 .poem-content {
   color: rgb(147, 45, 21);
   text-align: left;
-  line-height: 20pt;
+  line-height: 15pt;
 }
