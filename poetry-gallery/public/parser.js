@@ -24,10 +24,12 @@ const setPoems = async url => {
     let titlesDiv = selectElement(".titles");
 
     let h1Div = createElement("div", `div${i}`, "poem-div");
-    let h1node = createElement("h1", i, "poem-title", poemTitle);
+    let h1node = createElement("h1", `h1-${i}`, "poem-title", poemTitle);
 
     titlesDiv.appendChild(h1Div);
     h1Div.appendChild(h1node);
+
+    setDivSpacing(h1Div, keys.length);
 
     h1node.addEventListener("click", e => {
       let contentDiv = selectElement(".content");
@@ -38,14 +40,54 @@ const setPoems = async url => {
 
       let pNode = createElement(
         "p",
-        `poem${e.target.id}`,
+        `poem${e.target.id.split("-")[1]}`,
         "poem-content",
-        collection.poems[keys[e.target.id]]
+        collection.poems[keys[e.target.id.split("-")[1]]]
       );
 
       selectElement(".content").appendChild(pNode);
     });
   }
+};
+
+const setDivSpacing = (div, n) => {
+  let totalDivs = n;
+
+  let currentTotalDivs = document.querySelectorAll("h1");
+  let currentDivId = currentTotalDivs.length;
+
+  let previousDivs = totalDivs - (totalDivs - currentDivId);
+
+  setDivSpace(previousDivs);
+};
+
+const setDivSpace = divs => {
+  let currentDivs = identifyDivs(divs);
+  let permittedSpace = mainDiv.clientHeight - calculateSpace(currentDivs);
+
+  for (let i = 0; i < currentDivs.length; i++) {
+    currentDivs[i].style.marginTop = permittedSpace / currentDivs.length;
+  }
+};
+
+const identifyDivs = divs => {
+  let totalDivs = [];
+
+  for (let i = 0; i < divs; i++) {
+    totalDivs.push(selectElement(`#h1-${i}`));
+  }
+
+  return totalDivs;
+};
+
+const calculateSpace = divs => {
+  let totalSpace = 0;
+
+  for (let i = 0; i < divs.length; i++) {
+    totalSpace += divs[i].clientHeight;
+  }
+
+  return totalSpace;
 };
 
 const createElement = (type, id, className, innerText) => {
