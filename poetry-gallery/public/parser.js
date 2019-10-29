@@ -23,9 +23,11 @@ const setPoems = async url => {
     let poemTitle = formatTitle(keys[i]);
     let titlesDiv = selectElement(".titles");
 
+    let h1Div = createElement("div", `div${i}`, "poem-div");
     let h1node = createElement("h1", i, "poem-title", poemTitle);
 
-    titlesDiv.appendChild(h1node);
+    titlesDiv.appendChild(h1Div);
+    h1Div.appendChild(h1node);
 
     h1node.addEventListener("click", e => {
       let contentDiv = selectElement(".content");
@@ -50,7 +52,9 @@ const createElement = (type, id, className, innerText) => {
   let node = document.createElement(type);
   node.classList.add(className);
   node.id = id;
-  node.innerText = innerText;
+  if (innerText) {
+    node.innerText = innerText;
+  }
 
   return node;
 };
