@@ -66,7 +66,9 @@ const setDivSpace = divs => {
   let permittedSpace = mainDiv.clientHeight - calculateSpace(currentDivs);
 
   for (let i = 0; i < currentDivs.length; i++) {
-    currentDivs[i].style.marginTop = permittedSpace / currentDivs.length;
+    let margins = (permittedSpace / currentDivs.length)
+    currentDivs[i].style.marginBottom = margins;
+    currentDivs[i].style.marginTop = margins;
   }
 };
 
@@ -74,7 +76,7 @@ const identifyDivs = divs => {
   let totalDivs = [];
 
   for (let i = 0; i < divs; i++) {
-    totalDivs.push(selectElement(`#h1-${i}`));
+    totalDivs.push(selectElement(`#div${i}`));
   }
 
   return totalDivs;
