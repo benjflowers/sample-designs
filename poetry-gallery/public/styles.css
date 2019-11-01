@@ -16,7 +16,7 @@ body {
   display: grid;
   grid-template-columns: [titles] 1fr [content] 2fr;
   grid-column: main;
-  border: solid rgb(147, 45, 21) 2px;
+  border: solid rgb(165, 78, 59) 2px;
   overflow-y: scroll;
 }
 
